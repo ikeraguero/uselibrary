@@ -1,5 +1,6 @@
 * {
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -30,4 +31,38 @@ header {
   display: flex;
   justify-content: flex-start;
   font-size: 1rem;
+}
+
+.books-boxes {
+  display: flex;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr;
+  padding: 0 12.8rem;
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+  height: calc(100vh - 3 * 2.4rem);
+}
+
+.search-box,
+.details-box {
+  background-color: #343a40;
+  width: 42rem;
+  max-width: 42rem;
+  border-radius: 9px;
+  position: relative;
+}
+
+.toggle-button {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  border-radius: 9999px;
+  border: none;
+  padding: 0.2rem 0.6rem;
+  background-color: #212529;
+  color: white;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }

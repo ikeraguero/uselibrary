@@ -1,7 +1,13 @@
 import Header from "./Header";
+import BooksBoxes from "./BooksBoxes";
 
 function App() {
-  return <Header />;
+  return (
+    <body>
+      <Header />
+      <BooksBoxes />
+    </body>
+  );
 }
 
 export default App;
