@@ -43,8 +43,7 @@ header {
   height: calc(100vh - 3 * 2.4rem);
 }
 
-.search-box,
-.details-box {
+.box {
   background-color: #343a40;
   width: 42rem;
   max-width: 42rem;
@@ -54,6 +53,7 @@ header {
 
 .toggle-button {
   position: absolute;
+  max-width: 1.5rem;
   top: 0.8rem;
   right: 0.8rem;
   border-radius: 9999px;
