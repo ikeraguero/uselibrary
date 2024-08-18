@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 function App() {
   const [query, setQuery] = useState("");
   const [bookList, setBookList] = useState(null);
+  const [selectedBook, setSelectedBook] = useState(null);
   const API = "https://www.googleapis.com/books/v1/volumes?q=";
 
   useEffect(
@@ -18,10 +19,25 @@ function App() {
           if (!res.ok) throw new Error("Problems fetching your book");
           const data = await res.json();
           if (data.Response === "False") throw new Error("Book not found!");
+          console.log(data);
           const list = data.items.map((book) => {
-            const { title, publishedDate, pageCount, authors, imageLinks } =
-              book.volumeInfo;
-            return { title, publishedDate, pageCount, authors, imageLinks };
+            const {
+              title,
+              publishedDate,
+              pageCount,
+              authors,
+              imageLinks,
+              description,
+            } = book.volumeInfo;
+            return {
+              id: book.id,
+              title,
+              publishedDate,
+              pageCount,
+              authors,
+              imageLinks,
+              description,
+            };
           });
           setBookList(list);
           console.log(list);
@@ -43,7 +59,11 @@ function App() {
   return (
     <body>
       <Header setQuery={setQuery} query={query} bookList={bookList} />
-      <BooksBoxes bookList={bookList} />
+      <BooksBoxes
+        bookList={bookList}
+        setSelectedBook={setSelectedBook}
+        selectedBook={selectedBook}
+      />
     </body>
   );
 }

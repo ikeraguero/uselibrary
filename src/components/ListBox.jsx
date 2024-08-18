@@ -1,10 +1,14 @@
 import { useState } from "react";
 
-export default function Box({ bookList }) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function Box({ bookList, setSelected }) {
+  const [isOpen, setIsOpen] = useState(true);
 
   function handleClick() {
     setIsOpen(!isOpen);
+  }
+
+  function handleSelection(id) {
+    setSelected(id);
   }
 
   return (
@@ -15,7 +19,11 @@ export default function Box({ bookList }) {
       {bookList && isOpen ? (
         <ul className="book-list">
           {bookList.map((book) => (
-            <li key={book.title} className="book-item">
+            <li
+              key={book.id}
+              className="book-item"
+              onClick={() => handleSelection(book.id)}
+            >
               <img src={book.imageLinks?.smallThumbnail} alt="" />
               <div className="book-item-text">
                 <span className="book-item-text-title">{book.title}</span>
