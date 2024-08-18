@@ -49,6 +49,7 @@ header {
   max-width: 42rem;
   border-radius: 9px;
   position: relative;
+  overflow: scroll;
 }
 
 .toggle-button {
@@ -65,4 +66,44 @@ header {
   display: flex;
   align-items: center;
   cursor: pointer;
+}
+
+.book-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.book-item {
+  padding: 0.8rem 1.2rem;
+  color: azure;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  cursor: pointer;
+}
+
+.book-item-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-item-text-title {
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+.book-item-text-year {
+  font-size: 0.9rem;
+}
+.book-item img {
+  width: 4.4rem;
+  height: 6.4rem;
+}
+
+.book-item:hover {
+  background-color: #5f5f5f36;
 }

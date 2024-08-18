@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [query, setQuery] = useState("");
-  const [bookList, setBookList] = useState([]);
+  const [bookList, setBookList] = useState(null);
   const API = "https://www.googleapis.com/books/v1/volumes?q=";
 
   useEffect(
@@ -23,6 +23,7 @@ function App() {
               book.volumeInfo;
             return { title, publishedDate, pageCount, authors, imageLinks };
           });
+          setBookList(list);
           console.log(list);
         } catch (err) {
           if (err.name !== "AbortError" && query != "") {
@@ -41,8 +42,8 @@ function App() {
 
   return (
     <body>
-      <Header setQuery={setQuery} query={query} />
-      <BooksBoxes />
+      <Header setQuery={setQuery} query={query} bookList={bookList} />
+      <BooksBoxes bookList={bookList} />
     </body>
   );
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Box() {
+export default function BookBox() {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleClick() {

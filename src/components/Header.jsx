@@ -1,4 +1,4 @@
-export default function Header({ setQuery, query }) {
+export default function Header({ setQuery, query, bookList }) {
   return (
     <header>
       <span> 📚 useLibrary</span>
@@ -9,7 +9,7 @@ export default function Header({ setQuery, query }) {
         placeholder="Search for a book"
         onChange={(e) => setQuery(e.target.value)}
       />
-      <span>Found X results</span>
+      <span>Found {bookList ? bookList?.length : "0"} results</span>
     </header>
   );
 }

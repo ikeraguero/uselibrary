@@ -1,10 +1,11 @@
-import Box from "./Box";
+import ListBox from "./ListBox";
+import BookBox from "./BookBox";
 
-export default function BooksBoxes() {
+export default function BooksBoxes({ bookList }) {
   return (
     <main className="books-boxes">
-      <Box />
-      <Box />
+      <ListBox bookList={bookList} />
+      <BookBox />
     </main>
   );
 }
