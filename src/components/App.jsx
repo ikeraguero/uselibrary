@@ -28,6 +28,7 @@ function App() {
               authors,
               imageLinks,
               description,
+              categories,
             } = book.volumeInfo;
             return {
               id: book.id,
@@ -37,6 +38,7 @@ function App() {
               authors,
               imageLinks,
               description,
+              categories,
             };
           });
           setBookList(list);

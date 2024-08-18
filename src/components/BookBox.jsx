@@ -2,6 +2,8 @@ import { useState } from "react";
 import StarRating from "./StarRating";
 
 export default function BookBox({ bookList, selected }) {
+  const [rating, setRating] = useState(0);
+
   const [isOpen, setIsOpen] = useState(true);
   const book = bookList?.find((book) => book.id === selected);
   function handleClick() {
@@ -25,12 +27,23 @@ export default function BookBox({ bookList, selected }) {
                 <span>•</span>
                 <span className="book-pages">{`${book?.pageCount} pages`}</span>
               </div>
+              <p className="book-categories">{book?.categories}</p>
             </div>
           </div>
           <div className="book-details-bottom">
-            <p className="book-rating">
-              <StarRating stars={10} selected={selected} />
-            </p>
+            <div className="book-rating">
+              <StarRating
+                stars={10}
+                selected={selected}
+                rating={rating}
+                setRating={setRating}
+              />
+              {rating ? (
+                <button className="book-add-button"> + Add to list</button>
+              ) : (
+                ""
+              )}
+            </div>
             <p className="book-description">
               <em>{book?.description}</em>
             </p>

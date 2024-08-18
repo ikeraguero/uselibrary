@@ -22,15 +22,14 @@ const numberRatingStyle = {
   fontWeight: 800,
 };
 
-export default function StarRating({ stars, selected }) {
-  const [rating, setRating] = useState(0);
+export default function StarRating({ stars, selected, rating, setRating }) {
   const [tempRating, setTempRating] = useState(0);
 
   useEffect(
     function () {
       setRating(0);
     },
-    [selected]
+    [selected, setRating]
   );
 
   return (

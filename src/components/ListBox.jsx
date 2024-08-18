@@ -28,7 +28,7 @@ export default function Box({ bookList, setSelected }) {
               <div className="book-item-text">
                 <span className="book-item-text-title">{book.title}</span>
                 <span className="book-item-text-year">
-                  {book.publishedDate?.split("-")[0]}
+                  {`📅  ${book.publishedDate?.split("-")[0]}`}
                 </span>
               </div>
             </li>
