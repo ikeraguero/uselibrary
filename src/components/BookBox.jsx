@@ -1,4 +1,5 @@
 import { useState } from "react";
+import StarRating from "./StarRating";
 
 export default function BookBox({ bookList, selected }) {
   const [isOpen, setIsOpen] = useState(true);
@@ -19,7 +20,7 @@ export default function BookBox({ bookList, selected }) {
               <span className="book-title">{book?.title}</span>
               <div className="sub-details">
                 <span className="book-date">
-                  {book?.publishedDate.split("-")[0]}
+                  {book?.publishedDate?.split("-")[0]}
                 </span>
                 <span>•</span>
                 <span className="book-pages">{`${book?.pageCount} pages`}</span>
@@ -27,7 +28,12 @@ export default function BookBox({ bookList, selected }) {
             </div>
           </div>
           <div className="book-details-bottom">
-            <p className="book-description">{book?.description}</p>
+            <p className="book-rating">
+              <StarRating stars={10} selected={selected} />
+            </p>
+            <p className="book-description">
+              <em>{book?.description}</em>
+            </p>
             <p className="book-authors">
               {book?.authors ? `By: ${book?.authors}` : ""}
             </p>
