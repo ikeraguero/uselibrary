@@ -5,11 +5,16 @@ export default function BooksBoxes({
   bookList,
   setSelectedBook,
   selectedBook,
+  bookmarkedBooks,
 }) {
   return (
     <main className="books-boxes">
       <ListBox bookList={bookList} setSelected={setSelectedBook} />
-      <BookBox bookList={bookList} selected={selectedBook} />
+      <BookBox
+        bookList={bookList}
+        selected={selectedBook}
+        bookmarkedBooks={bookmarkedBooks}
+      />
     </main>
   );
 }

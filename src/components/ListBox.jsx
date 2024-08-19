@@ -14,7 +14,7 @@ export default function Box({ bookList, setSelected }) {
   return (
     <div className="box">
       <button className="toggle-button" onClick={handleClick}>
-        {isOpen ? "-" : "+"}
+        {isOpen ? <span>&ndash;</span> : <span>+</span>}
       </button>
       {bookList && isOpen ? (
         <ul className="book-list">
@@ -28,7 +28,8 @@ export default function Box({ bookList, setSelected }) {
               <div className="book-item-text">
                 <span className="book-item-text-title">{book.title}</span>
                 <span className="book-item-text-year">
-                  {`📅  ${book.publishedDate?.split("-")[0]}`}
+                  <span>📅</span>
+                  {` ${book.publishedDate?.split("-")[0]}`}
                 </span>
               </div>
             </li>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import StarRating from "./StarRating";
 
-export default function BookBox({ bookList, selected }) {
+export default function BookBox({ bookList, selected, bookmarkedBooks }) {
   const [rating, setRating] = useState(0);
 
   const [isOpen, setIsOpen] = useState(true);
@@ -12,10 +12,11 @@ export default function BookBox({ bookList, selected }) {
   return (
     <div className="box">
       <button className="toggle-button" onClick={handleClick}>
-        {isOpen ? "-" : "+"}
+        {isOpen ? <span>&ndash;</span> : <span>+</span>}
       </button>
-      {isOpen && book && (
+      {isOpen && book ? (
         <div className="book-details">
+          <button className="book-back-btn">&larr;</button>
           <div className="book-details-top">
             <img src={book?.imageLinks?.smallThumbnail} alt="" />
             <div className="book-details-text">
@@ -52,6 +53,19 @@ export default function BookBox({ bookList, selected }) {
             </p>
           </div>
         </div>
+      ) : isOpen && !book ? (
+        <div className="books-stats">
+          <span className="books-stats-title">BOOKS YOU READ</span>
+          <div className="books-stats-stats">
+            <span>{`📕 ${bookmarkedBooks.length} ${
+              bookmarkedBooks.length > 1 ? "books" : "book"
+            }`}</span>
+            <span>⭐ avg rating</span>
+            <span>📖 X pages</span>
+          </div>
+        </div>
+      ) : (
+        ""
       )}
     </div>
   );

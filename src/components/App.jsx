@@ -6,6 +6,7 @@ function App() {
   const [query, setQuery] = useState("");
   const [bookList, setBookList] = useState(null);
   const [selectedBook, setSelectedBook] = useState(null);
+  const [bookmarkedBooks, setBookmarkedBooks] = useState(["teste"]);
   const API = "https://www.googleapis.com/books/v1/volumes?q=";
 
   useEffect(
@@ -65,6 +66,7 @@ function App() {
         bookList={bookList}
         setSelectedBook={setSelectedBook}
         selectedBook={selectedBook}
+        bookmarkedBooks={bookmarkedBooks}
       />
     </body>
   );
