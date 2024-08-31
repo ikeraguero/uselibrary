@@ -1,14 +1,25 @@
 import { useState } from "react";
 import StarRating from "./StarRating";
 
-export default function BookBox({ bookList, selected, bookmarkedBooks }) {
+export default function BookBox({
+  bookList,
+  selected,
+  setSelectedBook,
+  bookmarkedBooks,
+}) {
   const [rating, setRating] = useState(0);
 
   const [isOpen, setIsOpen] = useState(true);
-  const book = bookList?.find((book) => book.id === selected);
+  let book = bookList?.find((book) => book.id === selected);
+
   function handleClick() {
     setIsOpen(!isOpen);
   }
+
+  function handleBack() {
+    setSelectedBook(null);
+  }
+
   return (
     <div className="box">
       <button className="toggle-button" onClick={handleClick}>
@@ -16,7 +27,9 @@ export default function BookBox({ bookList, selected, bookmarkedBooks }) {
       </button>
       {isOpen && book ? (
         <div className="book-details">
-          <button className="book-back-btn">&larr;</button>
+          <button className="book-back-btn" onClick={handleBack}>
+            &larr;
+          </button>
           <div className="book-details-top">
             <img src={book?.imageLinks?.smallThumbnail} alt="" />
             <div className="book-details-text">

@@ -13,6 +13,7 @@ export default function BooksBoxes({
       <BookBox
         bookList={bookList}
         selected={selectedBook}
+        setSelectedBook={setSelectedBook}
         bookmarkedBooks={bookmarkedBooks}
       />
     </main>
