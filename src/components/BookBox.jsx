@@ -24,6 +24,7 @@ export default function BookBox({
 
   function handleAddBook(book) {
     setBookmarkedBooks((bookmarked) => [...bookmarked, book]);
+    console.log(bookmarkedBooks);
     handleBack();
   }
 
@@ -66,7 +67,7 @@ export default function BookBox({
                   {rating ? (
                     <button
                       className="book-add-button"
-                      onClick={() => handleAddBook(book)}
+                      onClick={() => handleAddBook({ ...book, rating })}
                     >
                       {" "}
                       + Add to list
@@ -91,9 +92,20 @@ export default function BookBox({
             <span className="books-stats-title">BOOKS YOU READ</span>
             <div className="books-stats-stats">
               <span>{`📕 ${bookmarkedBooks.length} ${
-                bookmarkedBooks.length > 1 ? "books" : "book"
+                bookmarkedBooks.length > 1 || bookmarkedBooks.length == 0
+                  ? "books"
+                  : "book"
               }`}</span>
-              <span>⭐ avg rating</span>
+              <span>{`⭐ ${
+                bookmarkedBooks.length > 0
+                  ? (
+                      bookmarkedBooks
+                        .map((book) => book.rating)
+                        .reduce((acc, cur) => acc + cur, 0) /
+                      bookmarkedBooks.length
+                    ).toFixed(2)
+                  : "0.00"
+              }`}</span>
               <span>
                 {`📖
                 ${bookmarkedBooks
@@ -113,10 +125,16 @@ export default function BookBox({
                 <img src={book.imageLinks?.smallThumbnail} alt="" />
                 <div className="book-item-text">
                   <span className="book-item-text-title">{book.title}</span>
-                  <span className="book-item-text-pages">
-                    <span>📖</span>
-                    {`${book.pageCount} pages`}
-                  </span>
+                  <div className="book-item-text-bottom">
+                    <span className="book-item-text-pages">
+                      <span>📖</span>
+                      {`${book.pageCount} pages`}
+                    </span>
+                    <span className="book-item-text-rating">
+                      <span>⭐</span>
+                      {`${book.rating.toFixed(1)}`}
+                    </span>
+                  </div>
                 </div>
               </li>
             ))}

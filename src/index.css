@@ -98,7 +98,8 @@ header {
 }
 
 .book-item-text-year,
-.book-item-text-pages {
+.book-item-text-pages,
+.book-item-text-rating {
   font-size: 0.8rem;
   display: flex;
   gap: 0.4rem;
@@ -213,4 +214,9 @@ header {
   margin-top: 0.8rem;
   gap: 2.4rem;
   font-size: 1rem;
+}
+
+.book-item-text-bottom {
+  display: flex;
+  gap: 1.2rem;
 }
