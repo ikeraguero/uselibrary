@@ -6,11 +6,13 @@ export default function BookBox({
   selected,
   setSelectedBook,
   bookmarkedBooks,
+  setBookmarkedBooks,
 }) {
   const [rating, setRating] = useState(0);
 
   const [isOpen, setIsOpen] = useState(true);
   let book = bookList?.find((book) => book.id === selected);
+  const isBookmarked = bookmarkedBooks.includes(book);
 
   function handleClick() {
     setIsOpen(!isOpen);
@@ -18,6 +20,11 @@ export default function BookBox({
 
   function handleBack() {
     setSelectedBook(null);
+  }
+
+  function handleAddBook(book) {
+    setBookmarkedBooks((bookmarked) => [...bookmarked, book]);
+    handleBack();
   }
 
   return (
@@ -46,16 +53,28 @@ export default function BookBox({
           </div>
           <div className="book-details-bottom">
             <div className="book-rating">
-              <StarRating
-                stars={10}
-                selected={selected}
-                rating={rating}
-                setRating={setRating}
-              />
-              {rating ? (
-                <button className="book-add-button"> + Add to list</button>
+              {isBookmarked ? (
+                "This book is already in your list!"
               ) : (
-                ""
+                <>
+                  <StarRating
+                    stars={10}
+                    selected={selected}
+                    rating={rating}
+                    setRating={setRating}
+                  />
+                  {rating ? (
+                    <button
+                      className="book-add-button"
+                      onClick={() => handleAddBook(book)}
+                    >
+                      {" "}
+                      + Add to list
+                    </button>
+                  ) : (
+                    ""
+                  )}
+                </>
               )}
             </div>
             <p className="book-description">
@@ -67,16 +86,42 @@ export default function BookBox({
           </div>
         </div>
       ) : isOpen && !book ? (
-        <div className="books-stats">
-          <span className="books-stats-title">BOOKS YOU READ</span>
-          <div className="books-stats-stats">
-            <span>{`📕 ${bookmarkedBooks.length} ${
-              bookmarkedBooks.length > 1 ? "books" : "book"
-            }`}</span>
-            <span>⭐ avg rating</span>
-            <span>📖 X pages</span>
+        <>
+          <div className="books-stats">
+            <span className="books-stats-title">BOOKS YOU READ</span>
+            <div className="books-stats-stats">
+              <span>{`📕 ${bookmarkedBooks.length} ${
+                bookmarkedBooks.length > 1 ? "books" : "book"
+              }`}</span>
+              <span>⭐ avg rating</span>
+              <span>
+                {`📖
+                ${bookmarkedBooks
+                  .map((book) => book.pageCount)
+                  .reduce((acc, cur) => acc + cur, 0)}
+                pages`}
+              </span>
+            </div>
           </div>
-        </div>
+          <div>
+            {bookmarkedBooks.map((book) => (
+              <li
+                key={book.id}
+                className="book-item"
+                onClick={() => setSelectedBook(book.id)}
+              >
+                <img src={book.imageLinks?.smallThumbnail} alt="" />
+                <div className="book-item-text">
+                  <span className="book-item-text-title">{book.title}</span>
+                  <span className="book-item-text-pages">
+                    <span>📖</span>
+                    {`${book.pageCount} pages`}
+                  </span>
+                </div>
+              </li>
+            ))}
+          </div>
+        </>
       ) : (
         ""
       )}

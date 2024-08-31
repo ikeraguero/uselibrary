@@ -97,7 +97,8 @@ header {
   margin-bottom: 0.2rem;
 }
 
-.book-item-text-year {
+.book-item-text-year,
+.book-item-text-pages {
   font-size: 0.8rem;
   display: flex;
   gap: 0.4rem;

@@ -6,6 +6,7 @@ export default function BooksBoxes({
   setSelectedBook,
   selectedBook,
   bookmarkedBooks,
+  setBookmarkedBooks,
 }) {
   return (
     <main className="books-boxes">
@@ -15,6 +16,7 @@ export default function BooksBoxes({
         selected={selectedBook}
         setSelectedBook={setSelectedBook}
         bookmarkedBooks={bookmarkedBooks}
+        setBookmarkedBooks={setBookmarkedBooks}
       />
     </main>
   );
