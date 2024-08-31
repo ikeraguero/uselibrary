@@ -219,4 +219,5 @@ header {
 .book-item-text-bottom {
   display: flex;
   gap: 1.2rem;
+  font-weight: 500;
 }

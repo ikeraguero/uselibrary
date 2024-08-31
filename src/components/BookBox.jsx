@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StarRating from "./StarRating";
 
 export default function BookBox({
@@ -30,6 +30,18 @@ export default function BookBox({
     }
     handleBack();
   }
+
+  useEffect(function () {
+    const addEvent = function (e) {
+      if (e.key === "Backspace") {
+        if (selected) handleBack();
+      }
+    };
+    document.addEventListener("keydown", addEvent);
+    return () => {
+      document.removeEventListener("keydown", addEvent);
+    };
+  }, []);
 
   return (
     <div className="box">
