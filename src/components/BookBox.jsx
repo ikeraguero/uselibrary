@@ -12,7 +12,7 @@ export default function BookBox({
 
   const [isOpen, setIsOpen] = useState(true);
   let book = bookList?.find((book) => book.id === selected);
-  const isBookmarked = bookmarkedBooks.includes(book);
+  const isBookmarked = bookmarkedBooks?.includes(book);
 
   function handleClick() {
     setIsOpen(!isOpen);
@@ -23,8 +23,11 @@ export default function BookBox({
   }
 
   function handleAddBook(book) {
-    setBookmarkedBooks((bookmarked) => [...bookmarked, book]);
-    console.log(bookmarkedBooks);
+    if (bookmarkedBooks) {
+      setBookmarkedBooks((bookmarked) => [...bookmarked, book]);
+    } else {
+      setBookmarkedBooks([book]);
+    }
     handleBack();
   }
 
@@ -91,32 +94,32 @@ export default function BookBox({
           <div className="books-stats">
             <span className="books-stats-title">BOOKS YOU READ</span>
             <div className="books-stats-stats">
-              <span>{`📕 ${bookmarkedBooks.length} ${
-                bookmarkedBooks.length > 1 || bookmarkedBooks.length == 0
+              <span>{`📕 ${bookmarkedBooks?.length} ${
+                bookmarkedBooks?.length > 1 || bookmarkedBooks?.length == 0
                   ? "books"
                   : "book"
               }`}</span>
               <span>{`⭐ ${
-                bookmarkedBooks.length > 0
+                bookmarkedBooks?.length > 0
                   ? (
                       bookmarkedBooks
-                        .map((book) => book.rating)
+                        ?.map((book) => book.rating)
                         .reduce((acc, cur) => acc + cur, 0) /
-                      bookmarkedBooks.length
+                      bookmarkedBooks?.length
                     ).toFixed(2)
                   : "0.00"
               }`}</span>
               <span>
                 {`📖
                 ${bookmarkedBooks
-                  .map((book) => book.pageCount)
+                  ?.map((book) => book.pageCount)
                   .reduce((acc, cur) => acc + cur, 0)}
                 pages`}
               </span>
             </div>
           </div>
           <div>
-            {bookmarkedBooks.map((book) => (
+            {bookmarkedBooks?.map((book) => (
               <li
                 key={book.id}
                 className="book-item"

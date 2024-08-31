@@ -1,12 +1,16 @@
 import Header from "./Header";
 import BooksBoxes from "./BooksBoxes";
+import useLocalStorageState from "../hooks/useLocalStorage";
 import { useEffect, useState } from "react";
 
 function App() {
   const [query, setQuery] = useState("");
   const [bookList, setBookList] = useState(null);
   const [selectedBook, setSelectedBook] = useState(null);
-  const [bookmarkedBooks, setBookmarkedBooks] = useState([]);
+  const [bookmarkedBooks, setBookmarkedBooks] = useLocalStorageState(
+    [],
+    "bookmarked"
+  );
   const API = "https://www.googleapis.com/books/v1/volumes?q=";
 
   useEffect(
